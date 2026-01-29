@@ -68,6 +68,7 @@ export const POSPage = () => {
     fetchCustomers();
     checkCurrentShift();
     fetchTechnicians();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchTechnicians = async () => {

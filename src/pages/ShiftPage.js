@@ -113,6 +113,7 @@ export const ShiftPage = () => {
   useEffect(() => {
     fetchCurrentShift();
     fetchShifts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchCurrentShift = async () => {
