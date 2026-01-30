@@ -109,8 +109,12 @@ export const POSPage = () => {
 
   const checkCurrentShift = async () => {
     try {
-      const response = await api.get(`/shifts/current/${user.id}`);
-      setCurrentShift(response.data);
+      if (user && user.id) {
+        const response = await api.get('/shifts/current');
+        if (response.data) {
+          setCurrentShift(response.data);
+        }
+      }
     } catch (error) {
       console.error('Error checking shift:', error);
     }
