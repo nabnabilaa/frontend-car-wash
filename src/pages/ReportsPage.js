@@ -81,6 +81,8 @@ export const ReportsPage = () => {
     // ... (date logic same as before) ...
     if (dateRange === 'today') {
       start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      end = new Date(start);
+      end.setHours(23, 59, 59, 999);
     } else if (dateRange === 'week') {
       start = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     } else if (dateRange === 'month') {
@@ -305,12 +307,12 @@ export const ReportsPage = () => {
   const BarChart = ({ data, maxValue }) => {
     const max = maxValue || Math.max(...data.map(d => d.revenue), 1);
     return (
-      <div className="flex items-end gap-1 h-32">
+      <div className="flex gap-1 h-32">
         {data.map((item, i) => (
-          <div key={i} className="flex-1 flex flex-col items-center">
+          <div key={i} className="flex-1 flex flex-col items-center justify-end">
             <div
               className="w-full bg-gradient-to-t from-[#D4AF37] to-[#F59E0B] rounded-t"
-              style={{ height: `${(item.revenue / max) * 100}%`, minHeight: item.revenue > 0 ? '4px' : '0' }}
+              style={{ height: `${(item.revenue / max) * 85}%`, minHeight: item.revenue > 0 ? '4px' : '0' }}
             />
             <p className="text-xs text-zinc-500 mt-1">{item.day}</p>
           </div>
